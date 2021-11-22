@@ -2,7 +2,7 @@
 
 compile all files using the makefile i.e, using command `make` and then run it using `./a.out` 
 
-Assumptions--
+## Assumptions--
 
 -> input given to prompt will not exceed 1000 characters.
 
