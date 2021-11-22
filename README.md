@@ -1,24 +1,44 @@
+## how to compile and run the files:
+
+compile all files using the makefile i.e, using command `make` and then run it using `./a.out` 
+
 Assumptions--
+
 -> input given to prompt will not exceed 1000 characters.
+
 ->Number of commands given at a time cannot exceed 1000.
+
 ->Hostname, Username <= 100 characters.
+
 ->Directory names doesn't contain spaces, nullcharacters in between.
+
 ->ls will not work if a filename is given. i didnot implement this case.
+
 ->if a background process gets finished, it immediately prints the information. This is slightly different from original shell behaviour. 
+
 --------------------------------------------------------------------------------------------------------
+
 -> assumed that a command can contain i) one input redirection or ii) one iput+ one output redirection 
 shell doesn't execute commands which have multiple input and redirection symbols.
+
 -> also assumed that input redirection comes first and then output/append redirection
 shell fails to execute if output redirection symbol comes first
+
 ->when a specific job has completed its execution, we don't decrease job_count. next job will have count+1 as jobid.
+
 --------------------------------------------------------------------------------------------------------
+
 signals--
+
 -> ctrl+c : it interupts any fg process and resumes shell execution. (used sigint)
+
 ->ctrl+z : it makes any current fg process stop and go background. (used sigtstp)
+
 ->ctrl+d : exits from current shell (checked if getline returns <0 or +ve) 
 
 
 --main.c
+
 this contains infinite loop of taking input and giving prompt. 
 everytime it takes input, it reads it byline (getline) ,it tokenises the command with ";" as delimiter.
 according to number of output strings after tokenising, it runs a loop where, each command is further tokenised with " " (space) as delimiter. then, accordingly, it identifies which function to be executed after going through few if, else statements. Then, it executes appropriate function.
